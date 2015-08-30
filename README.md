@@ -1,6 +1,10 @@
 # React.js-Introduction-For-People-Who-Know-Just-Enough-jQuery-To-Get-By
 写给熟悉 jQuery 者的 React.js 入门指南
 
+>原文地址：http://reactfordesigners.com/labs/reactjs-introduction-for-people-who-know-just-enough-jquery-to-get-by/?utm_source=javascriptweekly&utm_medium=email
+
+
+
 ###目标受众：那些熟悉 jQuery 的人
 首先，我要澄清一下我这本书的受众
 
