@@ -1,5 +1,5 @@
 # React.js-Introduction-For-People-Who-Know-Just-Enough-jQuery-To-Get-By
-写给熟悉 jQuery 者的 React.js 的入门指南
+写给熟悉 jQuery 者的 React.js 入门指南
 
 ###目标受众：那些熟悉 jQuery 的人
 首先，我要澄清一下我这本书的受众
@@ -74,7 +74,7 @@ JSBin的示例：JSBin示例1
 ```
 下面来创建一个Tweet Box：
 
-现在你应该已经习惯了JSBin的用法了吧？好的，让我们来创建一个Tweet Box吧~仍然是在之前的代码中，改变<html>中<body>的内容：
+现在你应该已经习惯了JSBin的用法了吧？好的，让我们来创建一个Tweet Box吧~仍然是在之前的代码中，改变`<html>`中`<body>`的内容：
 
 ```
 <div class="well clearfix">
@@ -82,7 +82,7 @@ JSBin的示例：JSBin示例1
   <button class="btn btn-primary pull-right">Tweet</button>
 </div>
 ```
-我们将会使用BootStrap中的类名，如：form-control、well、clearfix等等，但是这些仅仅只是为了美观，跟本教程没有任何关系，下面是代码以及结果：
+我们将会使用BootStrap中的类名，如：`form-control`、`well`、`clearfix`等等，但是这些仅仅只是为了美观，跟本教程没有任何关系，下面是代码以及结果：
 
 JSBin示例2
 
@@ -254,7 +254,7 @@ var TweetBox = React.createClass({
 
 如上面所示，在return后面加一对括号(...)，然后在里面写上标签。
 
-JSX的一些注意事项
+####JSX的一些注意事项
 
 对于JSX，你需要记住一件事情：render()语句中，在`return(...)`只能有一个返回的大的闭合标签
 
@@ -279,7 +279,7 @@ return (
 );
 ```
 
-将UI组建插入到DOM节点：
+####将UI组建插入到DOM节点：
 
 现在我们想将上面的“hello world”UI组件插入到DOM中，我们需要加上代码React.render()在我们刚刚写的代码下面：
 
@@ -320,8 +320,9 @@ return (
 
 这里有两件事情需要注意：
 
-不要使用class，使用className，这是JSX语法的一个规定。并且class是JavaScript中的一个关键词。
-如果你只是用<br>，而不是<br />,这个标签不会起作用。记住一定要在自闭合标签中加上/
+- 不要使用class，使用className，这是JSX语法的一个规定。并且class是JavaScript中的一个关键词。
+- 如果你只是用`<br>`，而不是`<br />`,这个标签不会起作用。记住一定要在自闭合标签中加上`/`
+
 其他的应该跟之前的jQuery的示例相同。
 
 现在你应该可以在JSBin中看到TweetBox了。如果什么都没有，也许你应该仔细的检查一下你的代码。
@@ -508,50 +509,63 @@ render: function() {
 
 通过“状态”，我们可以使用以下逻辑：
 
-如果this.state.text.length === 0，按钮应该是被禁用的。在React中，添加disabled属性，并且设置返回值this.state.text.length === 0。因为它是js代码，我们需要把它“{}”起来。
+- 如果this.state.text.length === 0，按钮应该是被禁用的。在React中，添加disabled属性，并且设置返回值this.state.text.length === 0。因为它是js代码，我们需要把它“{}”起来。
+
+```
 <button className="btn btn-primary pull-right"
         disabled={this.state.text.length === 0}>Tweet</button>
+```
+
 如果你在原生的HTML中写disabled="true"或者disabled="false"。在原生的HTML中，你需要移除disabled属性来启用按钮。但是React不是原生的HTML，它遵循的是下面的原则：
 
-如果你在JSX中使用disabled={true}，它会编译成<button ... disabled>
-如果你在JSX中使用disabled={false}，disabled属性会从button标签中移除。
+- 如果你在JSX中使用disabled={true}，它会编译成<button ... disabled>
+- 如果你在JSX中使用disabled={false}，disabled属性会从button标签中移除。
+
 这个同样适用于其它布尔类型的属性，例如checked，暂时这还不是正式的官方文档的写法，但是它应该会很快被添加进去。
 
-现在的代码示例：JSBin。
+现在的代码示例：[JSBin](http://jsbin.com/zemidijuzo/1/edit?html,js,output)。
 
 小结
 在进入下一个步骤之前，请牢记React和jQuery的区别：
 
-在jQuery中，每发生一个事件，就需要改变一次DOM
-在React中，每发生一个时间，只会改变state“状态”，通过render来映射现在的状态
-步骤七：jQuery实现提示文本中剩余字数功能
+- 在jQuery中，每发生一个事件，就需要改变一次DOM
+- 在React中，每发生一个时间，只会改变state“状态”，通过render来映射现在的状态
+
+##步骤七：jQuery实现提示文本中剩余字数功能
 
 下一个功能就是文本中剩余字数的提示：
 tweet box character count
 
 功能说明：
 
-字符字数会这样显示140 - the number of characters entered.
+- 字符字数会这样显示140 - the number of characters entered.
+
 我们会首先利用jQuery实现这样的功能，之后再利用React。
 
 接着我们上一步的jQuery代码，React代码暂时放到一边。从现在开始，每一个小章节，我都会给出新的代码。这意味，在你看完每一步之后，都可以自己好好阅读这些代码。
 
-JSBin代码示范
+JSBin[代码示范](http://jsbin.com/yojucilalu/1/edit?html,js,output)
 
 首先，在HTML两种通过添加span标签来增加字符字数，请看下面的示范：
 
+```
 <textarea ...></textarea><br>
 <span>140</span>
 <button ...>Tweet</button>
+```
+
 在JS代码中添加以下：
 
+```
 $("textarea").on("input", function() {
   $("span").text(140 - $(this).val().length);
   ...
 });
+```
+
 好了，尝试输入字符，你会发现提示字符数会发生改变。
 
-查看完整的JSBin示例
+查看完整的[JSBin示例](http://jsbin.com/yumoraviyo/1/edit?html,js,output)
 
 ##步骤八：React实现提示文本中剩余字数功能
 
@@ -563,25 +577,29 @@ tips：你可以在JSBin上面尝试自己动手编写。
 
 代码编写建议：
 
-没有必要去改变getInitialState()或者handleChange()
-可以尝试在render()中操作this.state.text.length
-参考代码：
-在render()的<br/>后面添加
+- 没有必要去改变getInitialState()或者handleChange()
+- 可以尝试在render()中操作this.state.text.length
 
+参考代码：
+在`render()`的`<br/>`后面添加
+
+```
 <span>{140 - this.state.text.length}</span>
-这是到现在为止的JSBin代码链接
+```
+这是到现在为止的[JSBin代码链接](http://jsbin.com/vukevigeno/1/edit?html,js,output)
 
 感觉很简单？不明白为什么React比jQuery优秀这么多？好吧，下一步更加复杂了，而那才是React真正的瑰宝。
 
 ##步骤九："Add Photo"按钮
 
 让我们在这个UI组件上面添加一个"Add Photo"按钮。之后的事情就有些有趣了。
-tweet-box-add-photo
+![add-photo-explanation](http://segmentfault.com/img/bVoQoE)
 
 不过，我们不会真的上传图片。下面的，才是我们需要做的。
 
 当你在推特上传图片的时候，它会自动帮你计算剩下的可以输入的字符。而你每次上传一次图片，它将会占用23个你原本可以输入的字符字数。
-add-photo-explanation
+
+![tweet-box-add-photo](http://segmentfault.com/img/bVoQo5)
 
 仿照推特，接下来我们所要做的就是：
 
@@ -589,7 +607,7 @@ add-photo-explanation
 点击按钮的时候，可以切换它的状态。如果它的状态是"on"，按钮会显示✓ Photo Added
 如果按钮的状态是"on"，那么可以输入的字符的个数会下降23个
 同样，如果按钮的状态是"on"，即使没有文本输入，那么"Tweet"按钮也是可以点击的
-JSBin中的demo，尝试点击"Add Photo"按钮，然后观察可输入字数以及"Tweet"按钮的变化
+JSBin中的 [demo](http://jsbin.com/mowisemiqo/1/edit?html,js,output)，尝试点击"Add Photo"按钮，然后观察可输入字数以及"Tweet"按钮的变化
 
 ##步骤十：利用jquery实现跟上一步同样的功能
 
@@ -599,16 +617,18 @@ JSBin中的demo，尝试点击"Add Photo"按钮，然后观察可输入字数以
 
 接下来，我们要开始修改HTML如下：
 
-...
+```
 <button class="js-tweet-button btn btn-primary pull-right" disabled>Tweet</button>
 <button class="js-add-photo-button btn btn-default pull-right">Add Photo</button>
-...
+```
+
 下面来详细解释一下改变了那些内容：
 
-添加了叫做"Add Photo"的按钮
-分别给按钮添加类名js-tweet-button以及js-add-photo-button，给它们的前缀增加了'js'，是因为这些只会在js中使用，在css中不会使用。
-接下来，重新写js文件如下：
+- 添加了叫做"Add Photo"的按钮
+- 分别给按钮添加类名js-tweet-button以及js-add-photo-button，给它们的前缀增加了'js'，是因为这些只会在js中使用，在css中不会使用。
 
+接下来，重新写js文件如下：
+```
 $("textarea").on("input", function() {
   $("span").text(140 - $(this).val().length);
 
@@ -618,16 +638,19 @@ $("textarea").on("input", function() {
     $(".js-tweet-button").prop("disabled", true);
   }
 });
+```
+
 来详细解析一下有哪些变化：
 
-(重要)因为要给Tweet按钮增加disabled属性，所以我在第一行移除了$("button").prop("disabled", true);
-用$(".js-tweet-button")替换了$("button")，这样就可以跟.js-add-photo-button区分开来
+- (重要)因为要给Tweet按钮增加disabled属性，所以我在第一行移除了$("button").prop("disabled", true);
+- 用$(".js-tweet-button")替换了$("button")，这样就可以跟.js-add-photo-button区分开来
+
 增加按钮的功能
 我们开始来增加新的功能：
 
 点击Add Photo按钮来改变其状态。如果按钮的状态是"on"，那么就让其显示✓ Photo Added
 为了达到这样的效果，让我们来增加下面的代码：
-
+```
 $("textarea").on("input", function() {
   ...
 });
@@ -643,15 +666,19 @@ $(".js-add-photo-button").on("click", function() {
       .text("✓ Photo Added");
   }
 });
+```
+
 我们使用类名is-on来检测按钮的状态，你可以点击或者仔细校对代码来理解它的原理。
 
 递减字符计数
 
 接下里，让我们来实现这样的需求：
 
-如果"Add Photo"按钮的状态是"on"，那么可输入字符数会减少23
+- 如果"Add Photo"按钮的状态是"on"，那么可输入字符数会减少23
+
 为了完成这样的需求，编辑代码如下：
 
+```
 if ($(this).hasClass("is-on")) {
   $(this)
     .removeClass("is-on")
@@ -663,6 +690,8 @@ if ($(this).hasClass("is-on")) {
     .text("✓ Photo Added");
   $("span").text(140 - 23 - $("textarea").val().length);
 }
+```
+
 每次点击的时候，我们都会改变span中的文本内容。如果按钮的状态是"on",那么可输入字符数就从117（可输入字符总数140-图片所占的字符数23）开始计数。
 
 你可以点击"Add Photo"来检查上面的代码是否起作用
@@ -672,7 +701,7 @@ if ($(this).hasClass("is-on")) {
 上面的还远没有结束。即使"Add Photo"按钮的状态是"on"，你在文本框里面输入字符，提示的剩余可输入字符并不会同步发生改变。
 
 为了解决这个问题，我们需要修改一下有关textarea的代码如下：
-
+```
 $("textarea").on("input", function() {
   if ($(".js-add-photo-button").hasClass("is-on")) {
     $("span").text(140 - 23 - $(this).val().length);
@@ -683,6 +712,8 @@ $("textarea").on("input", function() {
   if (...) {
     ...
 });
+```
+
 现在，你可以点击"Add Photo"之后，在文本框里面输入一些字符检查一下功能是否实现。
 
 我知道这已经花费了好长一段时间了...
@@ -693,9 +724,11 @@ $("textarea").on("input", function() {
 
 最后一个需要完善的功能是：
 
-如果"Add Photo"的状态是"on"，即使没有文本输入，"Tweet"按钮也应该可以使用。
+- 如果"Add Photo"的状态是"on"，即使没有文本输入，"Tweet"按钮也应该可以使用。
+
 为了完成这个需求，我们需要修改"Add Photo"按钮的click事件：
 
+```
 $(".js-add-photo-button").on("click", function() {
   if ($(this).hasClass("is-on")) {
     ...
@@ -707,6 +740,8 @@ $(".js-add-photo-button").on("click", function() {
     $(".js-tweet-button").prop("disabled", false);
   }
 });
+```
+
 代码解析：
 
 如果"Add Photo"按钮的状态从"on"改变成"off"(if语句)，我们需要检查是否有字符输入，如果没有，禁用按钮
@@ -715,12 +750,13 @@ $(".js-add-photo-button").on("click", function() {
 
 我们还没有结束，下面的几步会发现代码的一个bug，你可以自己先尝试解决一下：
 
-点击"Add Photo"按钮，使其状态从"off"改变成"on"
-输入一些字符
-删除所有的字符
-你会发现，因为"Add Photo"按钮的状态是"on",所以"Tweet"按钮应该仍然是可以启用的，但是我们的设想不是这样的
-这意味我们关于文本框的代码少了某些逻辑，为了解决这个bug，我们需要再加一个if判断
+- 点击"Add Photo"按钮，使其状态从"off"改变成"on"
+- 输入一些字符
+- 删除所有的字符
+- 你会发现，因为"Add Photo"按钮的状态是"on",所以"Tweet"按钮应该仍然是可以启用的，但是我们的设想不是这样的
 
+这意味我们关于文本框的代码少了某些逻辑，为了解决这个bug，我们需要再加一个if判断
+```
 $("textarea").on("input", function() {
   ...
   if ($(this).val().length > 0 || $(".js-add-photo-button").hasClass("is-on")) {
@@ -729,6 +765,7 @@ $("textarea").on("input", function() {
     ...
   }
 });
+```
 我们增加了一个判断去检查"Tweet"按钮是否应该禁用
 
 你可以多试几次，这次应该没有问题了。
@@ -744,10 +781,10 @@ $("textarea").on("input", function() {
 这就不得不谈到我们之前说起的jQuery的风格。
 
 再看这幅图：
-jquery-style-1
+![jquery-style-1](http://segmentfault.com/img/bVoPEy)
 
 当只有一个事件而且处理对象只有一个DOM的时候，利用jquery写出的代码是非常简单的。然而，当多个事件多个处理对象的时候，利用jQuery写的代码就有点恶心了。
-jquery-style-2
+![jquery-style-2](http://segmentfault.com/img/bVoQMP)
 
 想象一下，如果有更多的事件，上面的图片中会出现更多的箭头，与此同时，代码变得更加不好管理了。
 
@@ -757,53 +794,66 @@ jquery-style-2
 
 ## 步骤十二：利用React实现"Add Photo"按钮功能
 
-接着你之前的代码开始
+接着[你之前的代码](http://jsbin.com/dudelakuji/1/edit?html,js,output)开始
 
 首先，在JSX中添加"Add Photo"按钮：
-
+```
 <button ...>Tweet</button>
 <button className="btn btn-default pull-right">Add Photo</button>
+```
+
 给按钮添加一个事件，使其可以改变按钮的显示内容从Add Photo到✓ Photo Added。温习一下React的代码风格：
-react-style-2
+![react-style-2](http://segmentfault.com/img/bVoPEQ)
+
 我们将会：
 
-创建一个状态变量用来追踪"Add Photo"按钮的状态是"on"还是"off"
-使用render()中的状态来决定按钮使显示Add Photo还是✓ Photo Added
-在click事件发生时改变其状态
+- 创建一个状态变量用来追踪"Add Photo"按钮的状态是"on"还是"off"
+- 使用render()中的状态来决定按钮使显示Add Photo还是✓ Photo Added
+- 在click事件发生时改变其状态
 对于第一步，我们会构造一个getInitialState方法，在其中设置一对键值对来记录图片是否上传：
-
+```
 getInitialState: function() {
   return {
     text: "",
     photoAdded: false
   };
 },
+```
 我们会对JSX中的"Add Photo"button标签做一些改变。我们可以通过下面的语句使其实现如果this.state.photoAdded是true，那么button上面就会显示"Photo Added"：
-
+```
 <button className="btn btn-default pull-right">
   {this.state.photoAdded ? "✓ Photo Added" : "Add Photo" }
 </button>
+```
+
 对于第三步，我们会在JSX中给文本框增加一个点击事件：
 
+```
 <button className="btn btn-default pull-right"
   onClick={this.togglePhoto}>
   {this.state.photoAdded ? "✓ Photo Added" : "Add Photo" }
 </button>
+```
+
 并且增加一个方法this.state.photoAdded用来改变button按钮的状态：
 
+```
 togglePhoto: function(event) {
   this.setState({ photoAdded: !this.state.photoAdded });
 },
+```
 现在，你可以尝试点击一下，你会发现"Add Photo"显示的内容会随着你的点击而改变。
 
 可输入字符提示
 
 我们将会接着实现下面的功能：
 
-如果"Add Photo"按钮的状态是"on"，可输入字符串将会减少23个
-现在，可输入字符串在render()中是这样控制的：
+- 如果"Add Photo"按钮的状态是"on"，可输入字符串将会减少23个
 
+现在，可输入字符串在render()中是这样控制的：
+```
 <span>{140 - this.state.text.length}</span>
+```
 现在，可输入字符数也依赖this.state.photoAdded，所以我们需要添加if-else语句
 
 然而，在JSX中，你不能直接在{...}写入if-else语句，你可以使用三元运算符，但是那样的话在这个项目里面也太长了。
@@ -812,21 +862,27 @@ togglePhoto: function(event) {
 
 首先，重新编辑span标签的代码：
 
+```
 <span>{ this.remainingCharacters() }</span>
+```
+
 并且，这样定义方法：
 
+```
 remainingCharacters: function() {
   if (this.state.photoAdded) {
     return 140 - 23 - this.state.text.length;
   } else {
     return 140 - this.state.text.length;
   }
-},
+}
+```
+
 现在，"Add photo"的状态应该可以影响可输入剩余字数了。
 
-问题：在render()中为什么{ this.remainingCharacters() }后面有()，而{ this.handleChange }以及{ this.togglePhoto }没有呢？
+问题：在`render()`中为什么`{ this.remainingCharacters() }`后面有`()`，而`{ this.handleChange }`以及`{ this.togglePhoto }`没有呢？
 
-好问题，让我们再看一次render()：
+好问题，让我们再看一次`render()`：
 
 ```
 render: function() {
@@ -844,9 +900,9 @@ render: function() {
     </div>
   );
 ```
-参考答案：
+####参考答案：
 
-我们写remainingCharacters()这个方法来返回一个数，我们需要得到这个数并让它在span标签中显示，所以我们需要通过()调用remainingCharacters()
+我们写`remainingCharacters()`这个方法来返回一个数，我们需要得到这个数并让它在span标签中显示，所以我们需要通过()调用remainingCharacters()
 另一方面，handleChange以及togglePhoto是事件处理方法，只有当交互（改变文本或者点击按钮）实现的时候，我们才需要调用这些方法。于是，我们不需要写()，只需要把他们赋值给onChange以及onClick这样的属性
 Tweet按钮的状态
 
@@ -859,9 +915,9 @@ Tweet按钮的状态
 
 简而言之，要将之前只要字符输入为0的时候，"Tweet"按钮禁用改成只要：
 
-字符串输入为0
-"Add Photo"按钮的状态是"off"
-两者都满足的时候"Tweet"按钮禁用
+- 字符串输入为0
+- "Add Photo"按钮的状态是"off"
+- 两者都满足的时候"Tweet"按钮禁用
 
 所以逻辑就变成了这样：
 
